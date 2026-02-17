@@ -12,8 +12,18 @@ await db.exec(`
   CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
-    email TEXT NOT NULL
+    email TEXT NOT NULL,
+    username VARCHAR NOT NULL,
+    password VARCHAR NOT NULL,
+    role VARCHAR NOT NULL
+
   )
 `);
+
+// await db.exec(`
+//   ALTER TABLE users
+// ADD COLUMN role VARCHAR(100)  NULL
+// `);
+
 
 console.log("Database SQLite siap digunakan");
