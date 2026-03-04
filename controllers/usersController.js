@@ -2,6 +2,7 @@ import User from "../schema/userSchema.js";
 
 export async function createUser(req, res){
   const {username, name, email, password} = req.body;
+  console.log("check : ", username);
   const hasil = await User.create({
     username,
     name, 
@@ -11,10 +12,24 @@ export async function createUser(req, res){
   return res.json(hasil);
 }
 
+export async function createUserAdmin(req, res){
+  const {username, name, email, password, role } = req.body;
+  console.log("check : ", username);
+  const hasil = await User.create({
+    username,
+    name, 
+    email,
+    password,
+    role
+  });
+  return res.json(hasil);
+}
+
+
 export async function updateUser(req, res){
  try {
   const { id } = req.params;
-  const { username, name, email, password } = req.body;
+  const { name, email } = req.body;
   
   const user = await User.findByPk(id);
 
@@ -23,10 +38,8 @@ export async function updateUser(req, res){
   }
 
   await user.update({
-    username,
     name,
-    email,
-    password
+    email
   });
   
   return res.json(user);
