@@ -16,7 +16,7 @@ app.use(express.json());
 app.post("/login", loginUser)
 app.post("/users/create", createUser)
 app.post("/users/createadmin", createUserAdmin)
-app.put("/users/:id", updateUser);
+app.put("/users/:id", verifikasiUser, updateUser);
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => {

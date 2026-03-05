@@ -1,25 +1,23 @@
 import User from "../schema/userSchema.js";
+import jwt from "jsonwebtoken";
 
-const adminId = 2;
-
-export async function verifikasiUser(req, res, next){
-    
-    const id        = req.params.id;
-    const hasil = await User.findByPk(id);
-    const roleUser  = hasil.role
-    const userId    = hasil.id
-
-    console.log("chek variable role", roleUser);
-
-    if (userId == adminId && roleUser == "admin" ){
-        console.log("akses diperbolehkan")
-
-        next();
-    }else {
-        console.log ("hanya admin yg bisa akses")
-        return res.json({
-            pesan:"hanya admin yg bisa akses"
-        })
+export async function verifikasiUser(req, res, next) {
+    if (req.body.accesToken == null) {
+        return res.json("token wajib disertakan")
     }
+
+    jwt.verify(req.body.accesToken, "BNI01", (error, decoded) => {
+        if (error)
+            return res.json("token tidak valid");
+
+        if (decoded) {
+            next();
+        } else {
+            return res.json({
+                pesan: "akses ditolak atau token tidak sah"
+            })
+        }
+    });
+
 
 }
