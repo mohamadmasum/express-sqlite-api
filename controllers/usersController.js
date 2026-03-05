@@ -1,5 +1,6 @@
 import User from "../schema/userSchema.js";
 
+
 export async function createUser(req, res){
   const {username, name, email, password} = req.body;
   console.log("check : ", username);
