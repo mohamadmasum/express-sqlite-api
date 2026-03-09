@@ -26,6 +26,16 @@ export async function createUserAdmin(req, res){
   return res.json(hasil);
 }
 
+export async function getUser(req, res){
+  try {
+    const users = await User.findAll();
+
+    return res.json(users);
+  } catch (error) {
+    return res.status(500).json({ message: error.message});
+  }
+}
+
 
 export async function updateUser(req, res){
  try {
@@ -47,6 +57,23 @@ export async function updateUser(req, res){
 } catch (error) {
   return res.status(500).json({ message: error.message });
 }
+}
+
+export async function deleteUser(req, res){
+  try {
+    const {id} = req.params;
+
+    const user = await User.findByPk(id);
+
+    if(!user){
+      return res.status(404).json({message: "user tidak ditemukan"});
+    }
+
+    await user.destroy();
+    return res.json({ message: "user berhasil dihapus"});
+  } catch (erroro) {
+    return res.status(500).json({ message: error.message});
+  } 
 }
  
  
