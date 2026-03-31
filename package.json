@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "start:dev": "nodemon --legacy-watch index.js"
+    "start:dev": "node --watch index.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,12 +14,13 @@
     "bcryptjs": "^3.0.3",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
+    "mysql2": "^3.19.1",
+    "pg": "^8.20.0",
     "sequelize": "^6.37.7",
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
-    "dotenv": "^17.3.1",
-    "nodemon": "^3.1.11"
+    "dotenv": "^17.3.1"
   }
 }

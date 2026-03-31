@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
-import { sqlite } from "../database/config.js";
+import { mysql } from "../database/config.js";
 
-const User = sqlite.define(
+const User = mysql.define(
   "User",
   {
     id: {
@@ -49,8 +49,8 @@ const User = sqlite.define(
   },
 );
 
-if (process.env.NODE_ENV == "development") {
-  sqlite.sync({
+if (process.env.NODE_ENV != "development") {
+  mysql.sync({
     force: true,
   });
 }
